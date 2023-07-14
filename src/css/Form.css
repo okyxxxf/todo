@@ -1,0 +1,30 @@
+.to-do__form {
+    display: flex;
+    width: 500px;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.add-item {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.add-item > .add-item__label {
+    flex-basis: 100%;
+}
+
+.add-item > .input {
+    flex-basis: 70%;
+}
+
+.add-item > .add-item__add-button {
+    flex-basis: 25%;
+}
+
+.add-item__label {
+    text-transform: uppercase;
+    font-weight: bold;
+    border-bottom: 2px solid rgb(28, 28, 28);
+}

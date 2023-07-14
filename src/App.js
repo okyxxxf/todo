@@ -1,10 +1,13 @@
 import './App.css';
+import Image from './components/To-do-image';
+import Form from './components/Form';
 
 export default function App() {
     return(
-        <>
-        <h1>dfdaged</h1>
-        </>
+        <div className='to-do'>
+            <Image />
+            <Form />
+        </div>
     );
 }
 

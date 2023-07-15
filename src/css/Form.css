@@ -74,6 +74,9 @@
     list-style-type: none;
     padding: 0;
     margin: 0;
+    gap: 16px;
+    display: flex;
+    flex-direction: column;
 }
 
 .task {
@@ -85,4 +88,8 @@
 
 .task > .task-name {
     flex-basis: 70%;
+}
+
+.task:has(.checkbox:checked) .task-name {
+    text-decoration: line-through;
 }

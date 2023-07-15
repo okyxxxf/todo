@@ -3,28 +3,86 @@
     width: 500px;
     flex-direction: column;
     align-items: stretch;
+    gap: 26px;
 }
 
-.add-item {
+.form__section {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 15px;
+    align-items: center;
 }
 
-.add-item > .add-item__label {
+.form__section > .label {
     flex-basis: 100%;
 }
 
-.add-item > .input {
+.form__section > .input {
     flex-basis: 70%;
 }
 
-.add-item > .add-item__add-button {
+.form__section > .add-item__add-button {
     flex-basis: 25%;
 }
 
-.add-item__label {
+.label {
     text-transform: uppercase;
     font-weight: bold;
+    padding-bottom: 8px;
     border-bottom: 2px solid rgb(28, 28, 28);
+}
+
+.button_span {
+    transition: 0.5s;
+    color: gray;
+    font-weight: 400;
+}
+
+.button_span:hover {
+    color: rgb(28, 28, 28);
+    cursor: pointer;
+}
+
+.input {
+    border: 1px solid gray;
+    background: transparent;
+    outline: none;
+    transition: 0.6s;
+    border-radius: 7px;
+    padding: 2px;
+    padding-left: 5px;
+}
+
+.input:hover {
+    background-color: white;
+    cursor: pointer;
+}   
+
+.delete-button {
+    width: 30px;
+    height: 30px;
+    transform: rotate(45deg);
+    transition: 0.7s;
+}
+
+.delete-button:hover {
+    transform: rotate(0deg);
+    cursor: pointer;
+}
+
+.tasks {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.task {
+    display: flex;
+    width: 500px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.task > .task-name {
+    flex-basis: 70%;
 }

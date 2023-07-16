@@ -5,11 +5,13 @@ import { useState } from 'react';
 export default function Form() {
     const [tasksToDo, setTasksToDo] = useState([]);
     const [tasksCompleted, setTasksCompleted] = useState([]);
+    const [tasksEdit, setTasksEdit] = useState([]);
     const [newItem, setNewItem] = useState('');
 
     const addItem = () => {
         setTasksToDo([...tasksToDo, newItem]);
         setNewItem('');
+        setTasksEdit([...tasksEdit, false]);
     };
 
     const swapItem = (index, mode) => {
@@ -32,6 +34,14 @@ export default function Form() {
         }
     };
 
+    const editItem = (index) => {
+        setTasksEdit([...tasksEdit.slice(0,index), !tasksEdit[index], ...tasksEdit.slice(index + 1, tasksEdit.length + 1)]);
+    };
+
+    const setItem = (index, value) => {
+        setTasksToDo([...tasksToDo.slice(0, index), value, ...tasksToDo.slice(index + 1, tasksToDo.length + 1)]);
+    };
+
     return (
         <div className="to-do__form">
             <AddItem 
@@ -43,6 +53,9 @@ export default function Form() {
                 tasks={tasksToDo}
                 swapTask={swapItem}
                 removeTask={removeItem}
+                tasksEdit={tasksEdit}
+                taskEdit={editItem}
+                setTask={setItem}
             />
             <Completed 
                 tasks={tasksCompleted}
@@ -69,14 +82,34 @@ function AddItem({addItemHandler, inputValue, inputValueSetter}) {
 }
 
 
-function Todo({tasks, swapTask, removeTask}) {
-    const tasksRender = tasks.map((task, index) => 
-        <li className="todo__task task" key={`${index}-${task}-${Math.random()}`}>
-            <input className="todo__checkbox checkbox" type="checkbox" onChange={() => swapTask(index, true)} />
-            <span className="todo__task-name task-name">{task}</span>
-            <span className="todo__edit-button button_span">Edit</span>
-            <img className="todo__delete-button delete-button" onClick={() => removeTask(index, true)}src={DeleteIcon} alt="icon delete" />
-        </li>
+function Todo({tasks, swapTask, removeTask, tasksEdit, taskEdit, setTask}) {
+    const tasksRender = tasks.map((task, index) => {
+        if (!tasksEdit[index]) {
+            return (
+                <li className="todo__task task" key={`${index}-${task}-${Math.random()}`}>
+                    <input className="todo__checkbox checkbox" type="checkbox" onChange={() => swapTask(index, true)} />
+                    <span className="todo__task-name task-name">{task}</span>
+                    <span className="todo__edit-button button_span" onClick={() => taskEdit(index)}>Edit</span>
+                    <img className="todo__delete-button delete-button" onClick={() => removeTask(index, true)}src={DeleteIcon} alt="icon delete" />
+                </li>
+            )
+        }
+        else {
+            return (
+                <li className="todo__task task" key={`${index}`}>
+                    <input className="todo__checkbox checkbox" type="checkbox" onChange={() => swapTask(index, true)} />
+                    <input className="todo__task-name task-name" 
+                        value={task} 
+                        type="text" 
+                        onChange={(e) => setTask(index, e.target.value)}
+                    />
+                    <span className="todo__edit-button button_span" onClick={() => taskEdit(index)}>Edit</span>
+                    <img className="todo__delete-button delete-button" onClick={() => removeTask(index, true)}src={DeleteIcon} alt="icon delete" />
+                </li>
+            )
+        }
+
+    } 
     );
 
     return (
@@ -94,7 +127,6 @@ function Completed({tasks, swapTask, removeTask}) {
         <li className="todo__task task" key={index}>
             <input className="todo__checkbox checkbox" type="checkbox" checked onChange={() => swapTask(index, false)} />
             <span className="todo__task-name task-name">{task}</span>
-            <span className="todo__edit-button button_span">Edit</span>
             <img className="todo__delete-button delete-button" onClick={() => removeTask(index, false)} src={DeleteIcon} alt="icon delete" />
         </li>
     );

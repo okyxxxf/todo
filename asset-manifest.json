@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/todo/static/css/main.5e11ae0c.css",
+    "main.js": "/todo/static/js/main.0e7216a9.js",
+    "static/js/787.63e47474.chunk.js": "/todo/static/js/787.63e47474.chunk.js",
+    "static/media/eisenhower-matrix.jpg": "/todo/static/media/eisenhower-matrix.bb7a54f58d8fabfe8879.jpg",
+    "static/media/delete.svg": "/todo/static/media/delete.6d97f79fc400e9b32015042d70c223a2.svg",
+    "index.html": "/todo/index.html",
+    "main.5e11ae0c.css.map": "/todo/static/css/main.5e11ae0c.css.map",
+    "main.0e7216a9.js.map": "/todo/static/js/main.0e7216a9.js.map",
+    "787.63e47474.chunk.js.map": "/todo/static/js/787.63e47474.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5e11ae0c.css",
+    "static/js/main.0e7216a9.js"
+  ]
+}
